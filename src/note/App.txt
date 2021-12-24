@@ -1,0 +1,109 @@
+
+1) For getting all the data
+
+import "./App.css";
+import { useGetAllPostQuery } from "./services/post";
+
+function App() {
+  const responseInfo = useGetAllPostQuery();
+
+  console.log("Response Information: ", responseInfo);
+  console.log("Data: ", responseInfo.data);
+  console.log("Success: ", responseInfo.isSuccess);
+
+  if (responseInfo.isLoading) return <div>Loading..</div>;
+  if (responseInfo.isError)
+    return (
+      <h1>
+        An error occured
+        {responseInfo.error.error}
+      </h1>
+    );
+  return (
+    <div className="App">
+      <h1>Redux Toolkit - RTK Query (Get All Data)</h1>
+      {responseInfo.data.map((post, i) => (
+        <div key={i}>
+          <h2>
+            {post.id}
+            {post.title}
+          </h2>
+          <p>{post.body}</p>
+          <hr />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default App;
+
+2) Getting data based on id
+
+import "./App.css";
+import { useGetPostByIdQuery } from "./services/post";
+function App() {
+   const responseInfo = useGetPostByIdQuery(5);
+   console.log("Response Information: ", responseInfo);
+   console.log("Data: ", responseInfo.data);
+   console.log("Success: ", responseInfo.isSuccess);
+
+  if (responseInfo.isLoading) return <div>Loading..</div>;
+  if (responseInfo.isError)
+    return (
+      <h1>
+        An error occured
+        {responseInfo.error.error}
+      </h1>
+    );
+  return (
+
+ <div className="App">
+      <h1>Redux Toolkit - RTK Query (Get Single Data)</h1>
+      <h2>{responseInfo.data.id} {responseInfo.data.title}</h2>
+      <p>{responseInfo.data.body}</p>
+    </div>
+
+  );
+}
+
+export default App;
+
+
+3) Get Limited Data { eg, total  5 datas}
+
+import "./App.css";
+import {useGetPostByLimitQuery} from "./services/post";
+
+function App() {
+  const responseInfo = useGetPostByLimitQuery(5);
+
+  console.log("Response Information: ", responseInfo);
+  console.log("Data: ", responseInfo.data);
+  console.log("Success: ", responseInfo.isSuccess);
+
+  if (responseInfo.isLoading) return <div>Loading..</div>;
+  if (responseInfo.isError)
+    return (
+      <h1>
+        An error occured
+        {responseInfo.error.error}
+      </h1>
+    );
+  return (
+      <div className="App">
+      <h1>Redux Toolkit - RTK Query (Get Limited Data)</h1>
+      {responseInfo.data.map((post, i) => (
+        <div key={i}>
+          <h2>
+            {post.id} {post.title}
+          </h2>
+          <p>{post.body}</p>
+          <hr />
+        </div>
+      ))}
+     </div>
+      );
+}
+export default App;
+

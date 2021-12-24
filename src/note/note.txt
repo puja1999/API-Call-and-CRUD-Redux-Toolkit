@@ -1,0 +1,11 @@
+
+Q) packages to install
+1) npx create-react-app react-redux-api
+2) npm install react-redux
+3) npm install @reduxjs/toolkit
+
+Q) fake API => https://jsonplaceholder.typicode.com/
+
+Q) RTK => https://redux-toolkit.js.org/tutorials/rtk-query
+
+Q) https://jsonplaceholder.typicode.com/guide/
